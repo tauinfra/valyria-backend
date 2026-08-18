@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/config/migrations/k8s_global_admins_seed.sql" value="14346884-1d8a-4af9-9161-3f72bdb62cdd" />
-  </component>
-</project>
