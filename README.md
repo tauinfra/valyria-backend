@@ -24,7 +24,7 @@ internal/
     audit/                  # 审计（登录审计、操作审计）
     dashboard/              # 仪表盘（集群/流水线汇总、趋势、最近发布等）
     dragon/                 # 发布平台（项目、环境、流水线、发布、审批）
-    kubernetes/             # 多集群 K8s 管理（集群、节点、命名空间、工作负载等）
+    kubernetes/             # 多集群 kubernetes 管理（集群、节点、命名空间、工作负载等）
   core/                     # 配置、数据库、日志、分页等基础设施
   pkg/
     di/                     # 依赖注入与各模块 Provider
@@ -55,11 +55,17 @@ internal/
 
 ### 4. Kubernetes 多集群管理（`/api/v1/kubernetes`）
 
+```bash
+$ kubectl create serviceaccount admin-user -n kube-system
+$ kubectl create clusterrolebinding admin-user-binding --clusterrole=cluster-admin --serviceaccount=kube-system:admin-user
+$ kubectl -n kube-system create token admin-user --duration=87600h
+```
+
 - 集群管理：增删改查、Token 更新
 - 权限：K8s 资源权限的同步与 CRUD（含批量）
 - 按集群管理：节点、命名空间、Deployment、StatefulSet、DaemonSet、ReplicaSet、Pod、Service、ConfigMap、Secret、HPA、Ingress、RBAC（Role/RoleBinding/ClusterRole/ClusterRoleBinding）、ServiceAccount、StorageClass、PV/PVC、Event 等
 - Tekton：Task、TaskRun、Pipeline、PipelineRun
-- 后台 Worker：K8s 权限同步、HPA 扩缩容历史同步
+- 后台 Worker：Kubernetes RBAC 权限同步、HPA 扩缩容历史同步
 
 ### 5. 发布平台 Dragon（`/api/v1/dragon`）
 
